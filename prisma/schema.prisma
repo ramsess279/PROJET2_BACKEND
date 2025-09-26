@@ -1,0 +1,101 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Entreprise {
+  id                 String   @id @default(cuid())
+  nom                String @unique
+  adresse            String? 
+  email              String  @unique
+  telephone          String?
+  logoUrl            String?
+  devise             String   @default("XOF")
+  typePeriode        String   @default("mensuelle")
+  couleurPrimaire    String? 
+  couleurSecondaire  String?
+  typographie        String? 
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  utilisateurs       Utilisateur[]
+  employes           Employe[]
+  payRuns            PayRun[]
+}
+
+model Utilisateur {
+  id            String   @id @default(cuid())
+  entrepriseId  String?
+  nomComplet    String
+  email         String   @unique
+  telephone     String
+  motDePasse    String
+  role          String
+  statut        String   @default("actif")
+  createdAt     DateTime @default(now())
+
+  entreprise    Entreprise? @relation(fields: [entrepriseId], references: [id])
+}
+
+model Employe {
+  id               String   @id @default(cuid())
+  entrepriseId     String
+  nomComplet       String
+  poste            String?
+  typeContrat      String
+  salaireBase      Float
+  coordonneeBancaire String?
+  email            String?
+  telephone        String?
+  statut           String   @default("actif")
+  dateEmbauche     DateTime?
+  dateFin          DateTime?
+
+  entreprise       Entreprise @relation(fields: [entrepriseId], references: [id])
+  payslips         Payslip[]
+}
+
+model PayRun {
+  id            String   @id @default(cuid())
+  entrepriseId  String
+  periode       String
+  type          String
+  statut        String   @default("brouillon")
+  dateCreation  DateTime @default(now())
+
+  entreprise    Entreprise @relation(fields: [entrepriseId], references: [id])
+  payslips      Payslip[]
+}
+
+model Payslip {
+  id           String   @id @default(cuid())
+  payRunId     String
+  employeId    String
+  salaireBrut  Float
+  deductions   Float    @default(0)
+  salaireNet   Float
+  statut       String   @default("en_attente")
+  dateGen      DateTime @default(now())
+
+  payRun       PayRun   @relation(fields: [payRunId], references: [id])
+  employe      Employe  @relation(fields: [employeId], references: [id])
+  paiements    Paiement[]
+}
+
+model Paiement {
+  id          String   @id @default(cuid())
+  payslipId   String
+  montant     Float
+  nombreJour   Int?
+  nombreHeure  Int?
+  mode        String
+  datePaiement DateTime @default(now())
+  recuUrl     String?
+  statut      String   @default("partiel")
+
+  payslip     Payslip @relation(fields: [payslipId], references: [id])
+}

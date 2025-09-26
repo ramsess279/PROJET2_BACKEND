@@ -1,0 +1,80 @@
+import type { Entreprise } from './entreprise.entity.js';
+declare const EntrepriseService: {
+    create: (data: Entreprise) => Promise<{
+        id: string;
+        nom: string;
+        adresse: string | null;
+        email: string;
+        telephone: string | null;
+        logoUrl: string | null;
+        devise: string;
+        typePeriode: string;
+        couleurPrimaire: string | null;
+        couleurSecondaire: string | null;
+        typographie: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findById: (id: string) => Promise<{
+        id: string;
+        nom: string;
+        adresse: string | null;
+        email: string;
+        telephone: string | null;
+        logoUrl: string | null;
+        devise: string;
+        typePeriode: string;
+        couleurPrimaire: string | null;
+        couleurSecondaire: string | null;
+        typographie: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    } | null>;
+    findAll: () => Promise<{
+        id: string;
+        nom: string;
+        adresse: string | null;
+        email: string;
+        telephone: string | null;
+        logoUrl: string | null;
+        devise: string;
+        typePeriode: string;
+        couleurPrimaire: string | null;
+        couleurSecondaire: string | null;
+        typographie: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    }[]>;
+    update: (id: string, data: Partial<Entreprise>) => Promise<{
+        id: string;
+        nom: string;
+        adresse: string | null;
+        email: string;
+        telephone: string | null;
+        logoUrl: string | null;
+        devise: string;
+        typePeriode: string;
+        couleurPrimaire: string | null;
+        couleurSecondaire: string | null;
+        typographie: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    delete: (id: string) => Promise<{
+        id: string;
+        nom: string;
+        adresse: string | null;
+        email: string;
+        telephone: string | null;
+        logoUrl: string | null;
+        devise: string;
+        typePeriode: string;
+        couleurPrimaire: string | null;
+        couleurSecondaire: string | null;
+        typographie: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+};
+export default EntrepriseService;
+//# sourceMappingURL=entreprise.service.d.ts.map

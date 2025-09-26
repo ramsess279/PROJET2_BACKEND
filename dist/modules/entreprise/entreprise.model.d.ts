@@ -1,0 +1,80 @@
+import type { Entreprise } from './entreprise.entity.js';
+declare const EntrepriseModel: {
+    create: (data: Entreprise) => import(".prisma/client").Prisma.Prisma__EntrepriseClient<{
+        id: string;
+        nom: string;
+        adresse: string | null;
+        email: string;
+        telephone: string | null;
+        logoUrl: string | null;
+        devise: string;
+        typePeriode: string;
+        couleurPrimaire: string | null;
+        couleurSecondaire: string | null;
+        typographie: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    findById: (id: string) => import(".prisma/client").Prisma.Prisma__EntrepriseClient<{
+        id: string;
+        nom: string;
+        adresse: string | null;
+        email: string;
+        telephone: string | null;
+        logoUrl: string | null;
+        devise: string;
+        typePeriode: string;
+        couleurPrimaire: string | null;
+        couleurSecondaire: string | null;
+        typographie: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    } | null, null, import("@prisma/client/runtime/library").DefaultArgs>;
+    findAll: () => import(".prisma/client").Prisma.PrismaPromise<{
+        id: string;
+        nom: string;
+        adresse: string | null;
+        email: string;
+        telephone: string | null;
+        logoUrl: string | null;
+        devise: string;
+        typePeriode: string;
+        couleurPrimaire: string | null;
+        couleurSecondaire: string | null;
+        typographie: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    }[]>;
+    update: (id: string, data: Partial<Entreprise>) => import(".prisma/client").Prisma.Prisma__EntrepriseClient<{
+        id: string;
+        nom: string;
+        adresse: string | null;
+        email: string;
+        telephone: string | null;
+        logoUrl: string | null;
+        devise: string;
+        typePeriode: string;
+        couleurPrimaire: string | null;
+        couleurSecondaire: string | null;
+        typographie: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    delete: (id: string) => import(".prisma/client").Prisma.Prisma__EntrepriseClient<{
+        id: string;
+        nom: string;
+        adresse: string | null;
+        email: string;
+        telephone: string | null;
+        logoUrl: string | null;
+        devise: string;
+        typePeriode: string;
+        couleurPrimaire: string | null;
+        couleurSecondaire: string | null;
+        typographie: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+};
+export default EntrepriseModel;
+//# sourceMappingURL=entreprise.model.d.ts.map
