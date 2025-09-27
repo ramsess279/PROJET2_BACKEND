@@ -9,8 +9,9 @@ export interface Entreprise {
   typePeriode?: string;
   couleurPrimaire?: string;
   couleurSecondaire?: string;
-  couleurTexte?: string;
   typographie?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+ 

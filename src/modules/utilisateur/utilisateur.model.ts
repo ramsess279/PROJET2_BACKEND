@@ -15,7 +15,7 @@ import type{ Utilisateur } from "./utilisateur.entity.js";
         return prisma.utilisateur.findMany() ;
     },
 
-   update: (id: string ,data: Utilisateur ) => {
+   update: (id: string ,data: Partial<Utilisateur> ) => {
     prisma.utilisateur.update(
         {
             where : {id},
