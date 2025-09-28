@@ -54,6 +54,8 @@ model Employe {
   statut           String   @default("actif")
   dateEmbauche     DateTime?
   dateFin          DateTime?
+  situationMatrimoniale String?
+  nationalite      String?
 
   entreprise       Entreprise @relation(fields: [entrepriseId], references: [id])
   payslips         Payslip[]
@@ -80,6 +82,8 @@ model Payslip {
   salaireNet   Float
   statut       String   @default("en_attente")
   dateGen      DateTime @default(now())
+  nombreJour   Int?
+  nombreHeure  Int?
 
   payRun       PayRun   @relation(fields: [payRunId], references: [id])
   employe      Employe  @relation(fields: [employeId], references: [id])
@@ -90,8 +94,6 @@ model Paiement {
   id          String   @id @default(cuid())
   payslipId   String
   montant     Float
-  nombreJour   Int?
-  nombreHeure  Int?
   mode        String
   datePaiement DateTime @default(now())
   recuUrl     String?

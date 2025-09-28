@@ -7,5 +7,11 @@ export interface Employe {
     salaireBase: number;
     coordonneeBancaire?: string;
     email?: string;
+    telephone?: string;
+    statut?: string;
+    dateEmbauche?: Date;
+    dateFin?: Date;
+    situationMatrimoniale?: string;
+    nationalite?: string;
 }
 //# sourceMappingURL=employe.entity.d.ts.map

@@ -1,7 +1,7 @@
 /*
   Warnings:
 
-  - Made the column `telephone` on table `Utilisateur` required. This step will fail if there are existing NULL values in that column.
+  - Made the column `telephone` on table `Utilisateur` . This step will fail if there are existing NULL values in that column.
 
 */
 -- AlterTable
