@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="300" height="200" preserveAspectRatio="xMinYMin meet" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="300" height="200"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-200)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="20" y="160" width="60" height="30" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,20%,40%); fill-rule: evenodd;"/>
+			<text x="100" y="170" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,340) scale(1,-1)">Bleu principal (#003366)</text>
+			<rect x="20" y="125" width="60" height="30" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,33%,64%); fill-rule: evenodd;"/>
+			<text x="100" y="135" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,270) scale(1,-1)">Bleu secondaire (#0055A4)</text>
+			<rect x="20" y="90" width="60" height="30" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; fill: rgb(40%,63%,82%); fill-rule: evenodd;"/>
+			<text x="100" y="100" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,200) scale(1,-1)">Bleu clair (#66A3D2)</text>
+			<rect x="20" y="55" width="60" height="30" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; fill: rgb(80%,80%,80%); fill-rule: evenodd;"/>
+			<text x="100" y="65" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,130) scale(1,-1)">Gris neutre (#CCCCCC)</text>
+			<rect x="20" y="20" width="60" height="30" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="100" y="30" style="font-family: Times-Roman; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,60) scale(1,-1)">Blanc (#FFFFFF)</text>
+		</g>
+	</g>
+</svg>

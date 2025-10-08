@@ -4,6 +4,8 @@ declare const EntrepriseModel: {
         id: string;
         nom: string;
         adresse: string | null;
+        latitude: number | null;
+        longitude: number | null;
         email: string;
         telephone: string | null;
         logoUrl: string | null;
@@ -19,6 +21,8 @@ declare const EntrepriseModel: {
         id: string;
         nom: string;
         adresse: string | null;
+        latitude: number | null;
+        longitude: number | null;
         email: string;
         telephone: string | null;
         logoUrl: string | null;
@@ -34,6 +38,8 @@ declare const EntrepriseModel: {
         id: string;
         nom: string;
         adresse: string | null;
+        latitude: number | null;
+        longitude: number | null;
         email: string;
         telephone: string | null;
         logoUrl: string | null;
@@ -49,6 +55,8 @@ declare const EntrepriseModel: {
         id: string;
         nom: string;
         adresse: string | null;
+        latitude: number | null;
+        longitude: number | null;
         email: string;
         telephone: string | null;
         logoUrl: string | null;
@@ -64,6 +72,8 @@ declare const EntrepriseModel: {
         id: string;
         nom: string;
         adresse: string | null;
+        latitude: number | null;
+        longitude: number | null;
         email: string;
         telephone: string | null;
         logoUrl: string | null;

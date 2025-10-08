@@ -2,6 +2,8 @@ export interface Entreprise {
   id?: string;
   nom: string;
   adresse?: string;
+  latitude?: number;
+  longitude?: number;
   email: string;
   telephone?: string;
   logoUrl?: string;

@@ -3,8 +3,11 @@ export interface Employe {
   entrepriseId: string;
   nomComplet: string;
   poste?: string;
+  postePersonnalise?: string;
   typeContrat: string;
   salaireBase: number;
+  nombreHeures?: number;
+  nombreJours?: number;
   coordonneeBancaire?: string;
   email?: string;
   telephone?: string;

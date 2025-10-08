@@ -8,7 +8,7 @@ declare global {
     }
 }
 declare const AuthMiddleware: {
-    TokenVerifed: (req: Request, res: Response, next: NextFunction) => Response<any, Record<string, any>> | undefined;
+    TokenVerifed: (req: Request, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>;
 };
 export default AuthMiddleware;
 //# sourceMappingURL=auth.middelware.d.ts.map

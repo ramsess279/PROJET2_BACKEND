@@ -23,9 +23,14 @@ const PaiementController = {
             res.status(500).json({ error: "Impossible de trouver le paiement" });
         }
     },
-    findAll: async (_req, res) => {
+    findAll: async (req, res) => {
         try {
-            const result = await PaiementService.findAll();
+            // Filtrer par entreprise si entrepriseId est défini (pour admin ou super-admin en mode entreprise)
+            let entrepriseId;
+            if (req.user?.entrepriseId) {
+                entrepriseId = req.user.entrepriseId;
+            }
+            const result = await PaiementService.findAll(entrepriseId ? { entrepriseId } : {});
             res.status(200).json(result);
         }
         catch {
@@ -57,6 +62,30 @@ const PaiementController = {
         }
         catch {
             res.status(500).json({ error: "Impossible de supprimer le paiement" });
+        }
+    },
+    // Télécharger un reçu en PDF
+    downloadReceipt: async (req, res) => {
+        try {
+            const { id } = req.params;
+            if (!id) {
+                return res.status(400).json({ error: "ID paiement requis" });
+            }
+            console.log('Génération PDF reçu pour id:', id);
+            // Générer le PDF
+            const pdfBuffer = await PaiementService.generateReceipt(id);
+            // Définir les headers pour le téléchargement
+            const filename = `recu_paiement_${id}.pdf`;
+            res.setHeader('Content-Type', 'application/pdf');
+            res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+            res.setHeader('Content-Length', pdfBuffer.length);
+            // Envoyer le PDF
+            res.send(pdfBuffer);
+        }
+        catch (error) {
+            console.error('Erreur génération PDF reçu:', error);
+            const errorMessage = error instanceof Error ? error.message : "Erreur inconnue";
+            res.status(500).json({ error: "Impossible de générer le PDF du reçu: " + errorMessage });
         }
     }
 };

@@ -1,1 +1,1 @@
-{"version":3,"file":"payslip.routes.d.ts","sourceRoot":"","sources":["../../../src/modules/payslip/payslip.routes.ts"],"names":[],"mappings":"AAGA,QAAA,MAAM,MAAM,4CAAW,CAAC;AAQxB,eAAe,MAAM,CAAC"}
+{"version":3,"file":"payslip.routes.d.ts","sourceRoot":"","sources":["../../../src/modules/payslip/payslip.routes.ts"],"names":[],"mappings":"AAIA,QAAA,MAAM,MAAM,4CAAW,CAAC;AAUxB,eAAe,MAAM,CAAC"}

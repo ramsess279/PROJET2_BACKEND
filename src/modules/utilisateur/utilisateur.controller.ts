@@ -28,13 +28,78 @@ const UserController = {
         }
     },
 
-    findAll: async (_req: Request, res: Response) => {
+    findAll: async (req: Request, res: Response) => {
         try {
-            const result = await UserService.findAll();
-            console.log(result)
-            res.status(200).json(result);
+            const { page = 1, limit = 10, search, status, role, entrepriseId, includeEmployeeUsers } = req.query;
+
+            const params: any = {};
+            if (search) params.search = search as string;
+            if (status) params.status = status as string;
+            if (role) params.role = role as string;
+            if (entrepriseId) params.entrepriseId = entrepriseId as string;
+            if (includeEmployeeUsers === 'true') params.includeEmployeeUsers = true;
+
+            // Logique de sécurité : filtrer toujours par entreprise pour les non-super-admins
+            if (req.user?.role !== 'super-admin') {
+                // Pour les admins et super-admins en mode entreprise, forcer le filtrage par leur entreprise
+                params.entrepriseId = req.user?.entrepriseId;
+
+                // Pour les admins, filtrer aussi par les utilisateurs créés via les employés
+                // (caissiers et vigiles)
+                if (req.user?.role === 'admin') {
+                    params.includeEmployeeUsers = true;
+                }
+            }
+            // Pour les super-admins, pas de filtrage automatique (ils voient tout)
+
+            const result = await UserService.findAll(params);
+            const total = await UserService.count(params);
+            res.status(200).json({ data: result, total });
         } catch {
             res.status(500).json({ error: "Impossible de récupérer les utilisateurs" });
+        }
+    },
+
+    findByEntrepriseId: async (req: Request, res: Response) => {
+        try {
+            const { entrepriseId } = req.params;
+            if (!entrepriseId) {
+                return res.status(400).json({ error: "Paramètre 'entrepriseId' manquant" });
+            }
+            const result = await UserService.findByEntrepriseId(entrepriseId);
+            res.status(200).json(result);
+        } catch {
+            res.status(500).json({ error: "Impossible de récupérer les utilisateurs de l'entreprise" });
+        }
+    },
+
+    findAdminByEntrepriseId: async (req: Request, res: Response) => {
+        try {
+            const { entrepriseId } = req.params;
+            if (!entrepriseId) {
+                return res.status(400).json({ error: "Paramètre 'entrepriseId' manquant" });
+            }
+            const result = await UserService.findAdminByEntrepriseId(entrepriseId);
+            res.status(200).json(result);
+        } catch {
+            res.status(500).json({ error: "Impossible de récupérer l'admin de l'entreprise" });
+        }
+    },
+
+    changePassword: async (req: Request, res: Response) => {
+        try {
+            const { id } = req.params;
+            const { motDePasse } = req.body;
+            if (!id) {
+                return res.status(400).json({ error: "Paramètre 'id' manquant" });
+            }
+            if (!motDePasse) {
+                return res.status(400).json({ error: "Nouveau mot de passe requis" });
+            }
+            const result = await UserService.changePassword(id, motDePasse);
+            res.status(200).json({ success: true, data: result });
+        } catch {
+            res.status(500).json({ error: "Impossible de changer le mot de passe" });
         }
     },
 

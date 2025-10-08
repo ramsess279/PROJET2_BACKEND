@@ -1,0 +1,155 @@
+export declare class MarketingService {
+    static getContentBySection(section: string): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        description: string | null;
+        active: boolean;
+        section: string;
+        title: string | null;
+        subtitle: string | null;
+        statValue: string | null;
+        statLabel: string | null;
+        benefitTitle: string | null;
+        benefitDesc: string | null;
+        order: number;
+    }[]>;
+    static getAllContent(): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        description: string | null;
+        active: boolean;
+        section: string;
+        title: string | null;
+        subtitle: string | null;
+        statValue: string | null;
+        statLabel: string | null;
+        benefitTitle: string | null;
+        benefitDesc: string | null;
+        order: number;
+    }[]>;
+    static getStructuredContent(): Promise<{
+        hero: {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            description: string | null;
+            active: boolean;
+            section: string;
+            title: string | null;
+            subtitle: string | null;
+            statValue: string | null;
+            statLabel: string | null;
+            benefitTitle: string | null;
+            benefitDesc: string | null;
+            order: number;
+        }[];
+        benefits: {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            description: string | null;
+            active: boolean;
+            section: string;
+            title: string | null;
+            subtitle: string | null;
+            statValue: string | null;
+            statLabel: string | null;
+            benefitTitle: string | null;
+            benefitDesc: string | null;
+            order: number;
+        }[];
+        stats: {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            description: string | null;
+            active: boolean;
+            section: string;
+            title: string | null;
+            subtitle: string | null;
+            statValue: string | null;
+            statLabel: string | null;
+            benefitTitle: string | null;
+            benefitDesc: string | null;
+            order: number;
+        }[];
+        cta: {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            description: string | null;
+            active: boolean;
+            section: string;
+            title: string | null;
+            subtitle: string | null;
+            statValue: string | null;
+            statLabel: string | null;
+            benefitTitle: string | null;
+            benefitDesc: string | null;
+            order: number;
+        }[];
+    }>;
+    static getStats(): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        description: string | null;
+        active: boolean;
+        section: string;
+        title: string | null;
+        subtitle: string | null;
+        statValue: string | null;
+        statLabel: string | null;
+        benefitTitle: string | null;
+        benefitDesc: string | null;
+        order: number;
+    }[]>;
+    static getBenefits(): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        description: string | null;
+        active: boolean;
+        section: string;
+        title: string | null;
+        subtitle: string | null;
+        statValue: string | null;
+        statLabel: string | null;
+        benefitTitle: string | null;
+        benefitDesc: string | null;
+        order: number;
+    }[]>;
+    static getHeroContent(): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        description: string | null;
+        active: boolean;
+        section: string;
+        title: string | null;
+        subtitle: string | null;
+        statValue: string | null;
+        statLabel: string | null;
+        benefitTitle: string | null;
+        benefitDesc: string | null;
+        order: number;
+    }[]>;
+    static getCTAContent(): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        description: string | null;
+        active: boolean;
+        section: string;
+        title: string | null;
+        subtitle: string | null;
+        statValue: string | null;
+        statLabel: string | null;
+        benefitTitle: string | null;
+        benefitDesc: string | null;
+        order: number;
+    }[]>;
+}
+//# sourceMappingURL=marketing.service.d.ts.map

@@ -1,0 +1,122 @@
+export declare function seedUtilisateurs(entreprises: any[]): Promise<[{
+    id: string;
+    email: string;
+    telephone: string;
+    createdAt: Date;
+    nomComplet: string;
+    motDePasse: string;
+    motDePasseTemporaire: string | null;
+    role: string;
+    statut: string;
+    entrepriseId: string | null;
+    employeId: string | null;
+}, {
+    id: string;
+    email: string;
+    telephone: string;
+    createdAt: Date;
+    nomComplet: string;
+    motDePasse: string;
+    motDePasseTemporaire: string | null;
+    role: string;
+    statut: string;
+    entrepriseId: string | null;
+    employeId: string | null;
+}, {
+    id: string;
+    email: string;
+    telephone: string;
+    createdAt: Date;
+    nomComplet: string;
+    motDePasse: string;
+    motDePasseTemporaire: string | null;
+    role: string;
+    statut: string;
+    entrepriseId: string | null;
+    employeId: string | null;
+}, {
+    id: string;
+    email: string;
+    telephone: string;
+    createdAt: Date;
+    nomComplet: string;
+    motDePasse: string;
+    motDePasseTemporaire: string | null;
+    role: string;
+    statut: string;
+    entrepriseId: string | null;
+    employeId: string | null;
+}, {
+    id: string;
+    email: string;
+    telephone: string;
+    createdAt: Date;
+    nomComplet: string;
+    motDePasse: string;
+    motDePasseTemporaire: string | null;
+    role: string;
+    statut: string;
+    entrepriseId: string | null;
+    employeId: string | null;
+}, {
+    id: string;
+    email: string;
+    telephone: string;
+    createdAt: Date;
+    nomComplet: string;
+    motDePasse: string;
+    motDePasseTemporaire: string | null;
+    role: string;
+    statut: string;
+    entrepriseId: string | null;
+    employeId: string | null;
+}, {
+    id: string;
+    email: string;
+    telephone: string;
+    createdAt: Date;
+    nomComplet: string;
+    motDePasse: string;
+    motDePasseTemporaire: string | null;
+    role: string;
+    statut: string;
+    entrepriseId: string | null;
+    employeId: string | null;
+}, {
+    id: string;
+    email: string;
+    telephone: string;
+    createdAt: Date;
+    nomComplet: string;
+    motDePasse: string;
+    motDePasseTemporaire: string | null;
+    role: string;
+    statut: string;
+    entrepriseId: string | null;
+    employeId: string | null;
+}, {
+    id: string;
+    email: string;
+    telephone: string;
+    createdAt: Date;
+    nomComplet: string;
+    motDePasse: string;
+    motDePasseTemporaire: string | null;
+    role: string;
+    statut: string;
+    entrepriseId: string | null;
+    employeId: string | null;
+}, {
+    id: string;
+    email: string;
+    telephone: string;
+    createdAt: Date;
+    nomComplet: string;
+    motDePasse: string;
+    motDePasseTemporaire: string | null;
+    role: string;
+    statut: string;
+    entrepriseId: string | null;
+    employeId: string | null;
+}]>;
+//# sourceMappingURL=utilisateurs.seeder.d.ts.map

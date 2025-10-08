@@ -7,6 +7,6 @@ export interface Payslip {
   salaireNet: number;
   statut?: string;
   dateGen?: Date;
-  nombreJour?: number;
-  nombreHeure?: number;
+  nombreJour: number | null;
+  nombreHeure: number | null;
 }

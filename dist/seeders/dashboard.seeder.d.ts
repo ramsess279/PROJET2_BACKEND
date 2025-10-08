@@ -1,0 +1,74 @@
+export declare function seedDashboardData(): Promise<{
+    dashboardStats: {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        totalCompanies: number;
+        compliantCompanies: number;
+        totalRevenue: number;
+        totalSalaryMass: number;
+    };
+    frequencyData: [{
+        id: string;
+        createdAt: Date;
+        year: number;
+        month: string;
+        frequency: number;
+    }, {
+        id: string;
+        createdAt: Date;
+        year: number;
+        month: string;
+        frequency: number;
+    }, {
+        id: string;
+        createdAt: Date;
+        year: number;
+        month: string;
+        frequency: number;
+    }, {
+        id: string;
+        createdAt: Date;
+        year: number;
+        month: string;
+        frequency: number;
+    }, {
+        id: string;
+        createdAt: Date;
+        year: number;
+        month: string;
+        frequency: number;
+    }, {
+        id: string;
+        createdAt: Date;
+        year: number;
+        month: string;
+        frequency: number;
+    }];
+    upcomingPayments: [{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: string;
+        companyName: string;
+        amount: number;
+        dueDate: Date;
+    }, {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: string;
+        companyName: string;
+        amount: number;
+        dueDate: Date;
+    }, {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: string;
+        companyName: string;
+        amount: number;
+        dueDate: Date;
+    }];
+}>;
+//# sourceMappingURL=dashboard.seeder.d.ts.map

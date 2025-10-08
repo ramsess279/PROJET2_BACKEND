@@ -10,15 +10,17 @@ generator client {
 model Entreprise {
   id                 String   @id @default(cuid())
   nom                String @unique
-  adresse            String? 
+  adresse            String?
+  latitude           Float?
+  longitude          Float?
   email              String  @unique
   telephone          String?
   logoUrl            String?
   devise             String   @default("XOF")
   typePeriode        String   @default("mensuelle")
-  couleurPrimaire    String? 
+  couleurPrimaire    String?
   couleurSecondaire  String?
-  typographie        String? 
+  typographie        String?
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 
@@ -28,26 +30,32 @@ model Entreprise {
 }
 
 model Utilisateur {
-  id            String   @id @default(cuid())
-  entrepriseId  String?
-  nomComplet    String
-  email         String   @unique
-  telephone     String
-  motDePasse    String
-  role          String
-  statut        String   @default("actif")
-  createdAt     DateTime @default(now())
+  id                   String   @id @default(cuid())
+  entrepriseId         String?
+  employeId            String?  @unique // Lien avec l'employé
+  nomComplet           String
+  email                String   @unique
+  telephone            String
+  motDePasse           String
+  motDePasseTemporaire String?
+  role                 String
+  statut               String   @default("actif")
+  createdAt            DateTime @default(now())
 
-  entreprise    Entreprise? @relation(fields: [entrepriseId], references: [id])
+  entreprise           Entreprise? @relation(fields: [entrepriseId], references: [id], onDelete: Cascade)
+  employe              Employe? @relation(fields: [employeId], references: [id], onDelete: Cascade)
 }
 
 model Employe {
   id               String   @id @default(cuid())
   entrepriseId     String
   nomComplet       String
-  poste            String?
+  poste            String   @default("employe") // caissier, vigile, employe, autre
+  postePersonnalise String? // Pour le poste personnalisé quand poste = "autre"
   typeContrat      String
   salaireBase      Float
+  nombreHeures     Int?     // Nombre d'heures pour les honoraires
+  nombreJours      Int?     // Nombre de jours pour les journaliers
   coordonneeBancaire String?
   email            String?
   telephone        String?
@@ -57,8 +65,11 @@ model Employe {
   situationMatrimoniale String?
   nationalite      String?
 
-  entreprise       Entreprise @relation(fields: [entrepriseId], references: [id])
+  entreprise    Entreprise @relation(fields: [entrepriseId], references: [id], onDelete: Cascade)
   payslips         Payslip[]
+  pointages        Pointage[]
+  presences        Presence[]
+  utilisateur      Utilisateur? // Relation avec l'utilisateur créé automatiquement
 }
 
 model PayRun {
@@ -68,8 +79,12 @@ model PayRun {
   type          String
   statut        String   @default("brouillon")
   dateCreation  DateTime @default(now())
+  dateDebut     DateTime?
+  dateFin       DateTime?
+  heureDebut    String?
+  heureFin      String?
 
-  entreprise    Entreprise @relation(fields: [entrepriseId], references: [id])
+  entreprise       Entreprise @relation(fields: [entrepriseId], references: [id], onDelete: Cascade)
   payslips      Payslip[]
 }
 
@@ -100,4 +115,118 @@ model Paiement {
   statut      String   @default("partiel")
 
   payslip     Payslip @relation(fields: [payslipId], references: [id])
+}
+
+model PricingPlan {
+  id            String   @id @default(cuid())
+  name          String
+  price         Float
+  currency      String   @default("XOF")
+  period        String   @default("mois")
+  maxEmployees  Int
+  description   String?
+  popular       Boolean  @default(false)
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  features      PricingFeature[]
+}
+
+model PricingFeature {
+  id            String   @id @default(cuid())
+  pricingPlanId String
+  feature       String
+  createdAt     DateTime @default(now())
+
+  pricingPlan   PricingPlan @relation(fields: [pricingPlanId], references: [id], onDelete: Cascade)
+}
+
+model DashboardStats {
+  id                  String   @id @default(cuid())
+  totalCompanies      Int      @default(0)
+  compliantCompanies  Int      @default(0)
+  totalRevenue        Float    @default(0)
+  totalSalaryMass     Float    @default(0)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model FrequencyEvolution {
+  id        String   @id @default(cuid())
+  month     String
+  frequency Int
+  year      Int      @default(2024)
+  createdAt DateTime @default(now())
+}
+
+model UpcomingPayment {
+  id        String   @id @default(cuid())
+  companyName String
+  amount    Float
+  dueDate   DateTime
+  status    String   @default("pending") // pending, sent, paid
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MarketingContent {
+  id                String   @id @default(cuid())
+  section           String   // hero, benefits, stats, cta
+  title             String?
+  subtitle          String?
+  description       String?
+  statValue         String?  // Pour les chiffres (500+, 50K+, etc.)
+  statLabel         String?  // Label du chiffre
+  benefitTitle      String?  // Pour les avantages
+  benefitDesc       String?  // Description de l'avantage
+  order             Int      @default(0)
+  active            Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model EntrepriseRequest {
+  id                 String   @id @default(cuid())
+  nomEntreprise      String
+  email              String
+  telephone          String
+  nomContact         String
+  emailUtilisateur   String
+  logo               String?
+  status             String   @default("pending")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Pointage {
+  id          String   @id @default(cuid())
+  employeId   String
+  type        String   // 'entree' | 'sortie' | 'pause' | 'reprise'
+  timestamp   DateTime @default(now())
+  location    Json?    // GPS coordinates {lat: number, lng: number}
+  method      String   // 'gps' | 'qr' | 'beacon' | 'facial' | 'manual'
+  deviceId    String?  // Anti-fraude
+  photoUrl    String?  // Preuve visuelle
+  ipAddress   String?
+  verified    Boolean  @default(false)
+  notes       String?
+
+  employe     Employe  @relation(fields: [employeId], references: [id], onDelete: Cascade)
+  presences   Presence[]
+}
+
+model Presence {
+  id            String   @id @default(cuid())
+  employeId     String
+  date          DateTime // Date du jour (sans heure)
+  heuresTravaillees Float @default(0)
+  statut         String   @default("present") // 'present' | 'absent' | 'conge' | 'maladie' | 'ferie'
+  pointages      Pointage[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  employe       Employe  @relation(fields: [employeId], references: [id], onDelete: Cascade)
+
+  @@unique([employeId, date])
 }
